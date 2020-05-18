@@ -5,14 +5,13 @@ git pull
 yarn --registry=https://registry.npm.taobao.org/ && yarn build
 
 # 删除容器
-docker rm -f file2png &> /dev/null
+docker rm -f two &> /dev/null
 
 #启动容器
 docker run -d --restart=on-failure:5\
-    -p 80:80 \
+    -p 6662:80 \
     -v $PWD/dist:/usr/share/nginx/html \
     -v $PWD/default.conf:/etc/nginx/conf.d/default.conf \
-    -v $PWD/iframe/office2png.html:/usr/share/nginx/html/office2png.html \
-    --name file2png nginx
+    --name two nginx
 
 
