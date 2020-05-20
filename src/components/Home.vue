@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        this is two home
+        two 子应用的首页
     </div>
 </template>
 

@@ -1,10 +1,10 @@
 <template>
     <div class="about">
-        this is two about
+        two 子应用的关于页
         <br>
-        <button @click="testFn">测试事件</button>
+        <button @click="testFn">测试主应用的下发事件</button>
         <br>
-        {{'this is my name --- '+name}}
+        {{'测试主子应用间通讯 --- '+name}}
     </div>
 </template>
 
@@ -20,12 +20,16 @@
             this.$onGlobalStateChange((state,prev)=>{
                 if(state.mt !== prev.mt){
                     this.name = state.mt
+                    this.$pager.next({
+                        from: "two",
+                        showMsg: "主子应用通讯成功"
+                    });
                 }
             })
         },
         methods: {
             testFn(){
-                this.$show('测试事件成功')
+                this.$show('测试主应用的下发事件成功')
             }
         }
     }

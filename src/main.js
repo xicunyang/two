@@ -27,11 +27,17 @@ function render() {
 
 // 生命周期 - 挂载前
 export async function bootstrap(props) {
-    console.log('two bootstrap');
+    Vue.prototype.$pager = props.msg.pager
+
+    Vue.prototype.$pager.next({
+        from: "two",
+        showMsg: "bootstrap"
+    });
 }
 // 生命周期 - 挂载后
 export async function mount(props) {
     console.log('two mount');
+
 
     // 设置主应用下发的方法
     Object.keys(props.fn).forEach(method =>{
@@ -42,11 +48,20 @@ export async function mount(props) {
     Vue.prototype.$onGlobalStateChange = props.onGlobalStateChange
     Vue.prototype.$setGlobalState = props.setGlobalState
 
+    Vue.prototype.$pager.next({
+        from: "two",
+        showMsg: "mount"
+    });
+
     // 渲染
     render()
 }
 // 生命周期 - 解除挂载
 export async function unmount(){
+    Vue.prototype.$pager.next({
+        from: "two",
+        showMsg: "unmount"
+    });
     console.log('two unmount');
 }
 
